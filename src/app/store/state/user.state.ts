@@ -8,13 +8,13 @@ import { State, Store, StateContext, Action } from '@ngxs/store';
 export interface UserState {
   user: User;
   isLoggedIn: boolean;
-  loginTime: Date;
+  loginDate: Date;
 }
 
 const defaultState = {
   user: null,
   isLoggedIn: false,
-  loginTime: null
+  loginDate: null
 };
 
 @State<UserState>({
@@ -32,7 +32,7 @@ export class UserStore {
     setState({
       user: payload,
       isLoggedIn: true,
-      loginTime: new Date(Date.now())
+      loginDate: new Date(Date.now())
     });
     localStorage.setItem(USER_STATUS, JSON.stringify(getState()));
   }
