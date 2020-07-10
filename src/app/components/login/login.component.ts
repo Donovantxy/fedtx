@@ -1,3 +1,4 @@
+import { delay } from 'rxjs/operators';
 import { PW_ERR_MSG } from './../../utils/constants';
 import { isInString } from './../../utils/functions';
 import { AuthService } from './../../services/auth.service';
@@ -36,12 +37,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscribe.unsubscribe();
+    // this.subscribe.unsubscribe();
   }
 
   login() {
     this.isLogging = true;
     this.loginForm.disable();
+    // this.loginForm.get('password').setErrors(null);
     /*
       We don't need to unsubscribe an observable from a http request,
       because Angular finalizes itself already
@@ -57,14 +59,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private checkPwDependingOnNameChanges() {
-    this.subscribe = merge(
-      this.loginForm.get('firstName').valueChanges,
-      this.loginForm.get('lastName').valueChanges,
-    ).subscribe(val => {
-      console.log(val);
-      // this.loginForm.controls?.password.setErrors(null
-        // isInString([val], this.loginForm.get('password').value) ? { password: PW_ERR_MSG } : null
-      // );
+    const pw = this.loginForm.get('password');
+    this.loginForm.get('firstName').statusChanges
+    .pipe(delay(10))
+    .subscribe(val => {
+      this.loginForm.get('password').updateValueAndValidity();
     });
   }
 
