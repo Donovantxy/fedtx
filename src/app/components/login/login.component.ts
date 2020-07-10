@@ -2,21 +2,22 @@ import { PW_ERR_MSG } from './../../utils/constants';
 import { isInString } from './../../utils/functions';
 import { AuthService } from './../../services/auth.service';
 import { AppValidators } from './../../utils/validators';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { merge } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   errorLogin = '';
   public loginForm: FormGroup;
   public isLogging = false;
+  private subscribe: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -32,6 +33,10 @@ export class LoginComponent implements OnInit {
       password: ['ciaociA0', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
     });
     this.checkPwDependingOnNameChanges();
+  }
+
+  ngOnDestroy() {
+    this.subscribe.unsubscribe();
   }
 
   login() {
@@ -53,14 +58,12 @@ export class LoginComponent implements OnInit {
   }
 
   private checkPwDependingOnNameChanges() {
-    merge(
+    this.subscribe = merge(
       this.loginForm.get('firstName').valueChanges,
       this.loginForm.get('lastName').valueChanges,
     ).subscribe(val => {
       const passwordCtrl = this.loginForm.controls?.password;
-      // console.log(passwordCtrl, isInString([val], passwordCtrl.value));
-      // passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { passowrd: PW_ERR_MSG } : null);
-      // passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { password: PW_ERR_MSG } : null);
+      passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { password: PW_ERR_MSG } : null);
     });
   }
 
