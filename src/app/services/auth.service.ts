@@ -1,6 +1,6 @@
 import { Login } from './../store/actions/user.actions';
 import { environment } from './../../environments/environment';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';

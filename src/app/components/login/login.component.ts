@@ -5,9 +5,7 @@ import { AppValidators } from './../../utils/validators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { delay } from 'rxjs/operators';
-import { zip, concat, merge } from 'rxjs';
-import { format } from 'path';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-login',

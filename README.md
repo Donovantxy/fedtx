@@ -13,3 +13,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 If you want to build for production run `npm run build:prod`, the outcome will be produced into **/dist** folder
 
 If you want to run tests type `npm test`
+
+PS: I also implemented a simply store (redux) where I put user status as
+```
+UserState: {
+  user: [firstName, lastName, email, password]
+  isLoggedIn: boolean
+  loginTime: Date
+}
+```
