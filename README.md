@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Running the application
 
-1 - Make suere you have NODE, NPM installed on your machine, clone the repository and get into the folder from shell, then:
+1 - Make suere you have **NodeJs**, and **npm** installed on your machine, clone the repository and get into the folder from shell, then:
 
 2 - Run `npm i`
 
