@@ -14,7 +14,8 @@
     <mat-form-field appearance="outline" class="login__email">
       <mat-label>Email</mat-label>
       <input formControlName="email" matInput placeholder="write your email">
-      <mat-error *ngIf="loginForm.get('email').errors">Email is required</mat-error>
+      <mat-error *ngIf="loginForm.get('email').errors?.required">Email is required</mat-error>
+      <mat-error *ngIf="loginForm.get('email').errors?.pattern">Incorrect email format</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="login__password">
       <mat-label>Password</mat-label>

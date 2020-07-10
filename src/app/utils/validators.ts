@@ -8,7 +8,6 @@ export class AppValidators {
 
   public static passwordLogin(): ValidatorFn {
     return (ctrl: AbstractControl): object => {
-      ctrl.markAsTouched();
       let check = /[A-Z]+/.test(ctrl.value);
       if ( ctrl.parent ) {
         const firstName = ctrl.parent.get('firstName').value;

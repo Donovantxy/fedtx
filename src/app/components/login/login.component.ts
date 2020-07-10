@@ -59,7 +59,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private checkPwDependingOnNameChanges() {
-    this.subscribe = this.loginForm.get('firstName').statusChanges
+    this.subscribe = merge(
+      this.loginForm.get('firstName').statusChanges,
+      this.loginForm.get('lastName').statusChanges
+    )
     .pipe(delay(10))
     .subscribe(val => {
       this.loginForm.get('password').updateValueAndValidity();
