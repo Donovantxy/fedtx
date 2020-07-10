@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       We don't need to unsubscribe an observable from a http request,
       because Angular finalizes itself already
     */
-    console.log(this.loginForm, this.loginForm.value);
     this.authService.login(this.loginForm.value)
     .subscribe(resp => {
       // usually from the response we can get if the request is successfull or not,
@@ -62,8 +61,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginForm.get('firstName').valueChanges,
       this.loginForm.get('lastName').valueChanges,
     ).subscribe(val => {
-      const passwordCtrl = this.loginForm.controls?.password;
-      passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { password: PW_ERR_MSG } : null);
+      console.log(val);
+      // this.loginForm.controls?.password.setErrors(null
+        // isInString([val], this.loginForm.get('password').value) ? { password: PW_ERR_MSG } : null
+      // );
     });
   }
 

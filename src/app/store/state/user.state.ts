@@ -34,7 +34,6 @@ export class UserStore {
       isLoggedIn: true,
       loginTime: new Date(Date.now())
     });
-    console.log(payload);
     localStorage.setItem(USER_STATUS, JSON.stringify(getState()));
   }
 
