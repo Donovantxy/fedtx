@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.subscribe.unsubscribe();
+    this.subscribe.unsubscribe();
   }
 
   login() {
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private checkPwDependingOnNameChanges() {
     const pw = this.loginForm.get('password');
-    this.loginForm.get('firstName').statusChanges
+    this.subscribe = this.loginForm.get('firstName').statusChanges
     .pipe(delay(10))
     .subscribe(val => {
       this.loginForm.get('password').updateValueAndValidity();
