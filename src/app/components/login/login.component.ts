@@ -1,6 +1,4 @@
 import { delay } from 'rxjs/operators';
-import { PW_ERR_MSG } from './../../utils/constants';
-import { isInString } from './../../utils/functions';
 import { AuthService } from './../../services/auth.service';
 import { AppValidators } from './../../utils/validators';
 import { Component, OnInit, OnDestroy } from '@angular/core';
