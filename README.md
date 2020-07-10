@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Running the application
 
-1 - Make sure you have **NodeJs**, and **npm** installed on your machine, clone the repository and get into the folder usiong command line, then:
+1 - Make sure you have **NodeJs**, and **npm** installed on your machine, clone the repository and get into the folder using command line, then:
 
 2 - run `npm i`: in order to install all dependecies needed to run the web-app
 
