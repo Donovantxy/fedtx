@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      firstName: ['fulvio', [Validators.required ]],
-      lastName: ['cosco', [Validators.required ]],
-      email: ['ciao@cao.com', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
-      password: ['ciaociA0', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
+      firstName: ['', [Validators.required ]],
+      lastName: ['', [Validators.required ]],
+      email: ['', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
+      password: ['', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
     });
     this.checkPwDependingOnNameChanges();
   }
@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private checkPwDependingOnNameChanges() {
-    const pw = this.loginForm.get('password');
     this.subscribe = this.loginForm.get('firstName').statusChanges
     .pipe(delay(10))
     .subscribe(val => {
