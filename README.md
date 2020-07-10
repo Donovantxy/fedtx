@@ -10,4 +10,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 4 - run `npm start`: the web-app should get open on default browser on `http://localhost:3330` (wheras the server will run on port `3333`)
 
-If you want to build for production run `npm run build:prod`, the outcome will go in **/dist** folder
+If you want to build for production run `npm run build:prod`, the outcome will go into **/dist** folder
+
+If you want to run tests type `npm test`

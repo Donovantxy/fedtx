@@ -6,8 +6,8 @@ export class AppValidators {
 
   public static passwordLogin(): ValidatorFn {
     return (ctrl: AbstractControl): object => {
-      const errMsg = `Wrong password structure, it has to be min 8 letters long,
-      it has to contain at lower and capital letters, and it should not contain user's first or last name`;
+      const errMsg = `Wrong password format, it has to be min 8 letters long,
+      it has to contain lower and capital letters, and it should not contain user's first or last name`;
       let check = /[A-Z]+/.test(ctrl.value);
       if ( ctrl.parent ) {
         const firstName = ctrl.parent.get('firstName').value;

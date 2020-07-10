@@ -1,3 +1,5 @@
+import { UserStore } from './../../store/state/user.state';
+import { NgxsModule } from '@ngxs/store';
 import { AuthService } from './../../services/auth.service';
 import { mockAuthService } from './../../../test-util/mock';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -13,7 +15,11 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      imports: [RouterTestingModule, HttpClientModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientModule,
+        NgxsModule.forRoot([UserStore])
+      ],
       providers: [{provide: AuthService, useValue: mockAuthService}]
     })
     .compileComponents();

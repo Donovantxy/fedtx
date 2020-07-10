@@ -1,6 +1,15 @@
 @import '~src/style/breakpoints';
 @import '~src/style/variables';
+@import '~src/style/colors';
 
+h2 {
+  font-size: $fxxl;
+  text-align: center;
+  color: $theme;
+  span {
+    color: $orange;
+  }
+}
 .login {
   font-size: $fn;
   display: flex;
@@ -15,7 +24,7 @@
     .mat-form-field {
       width: 100%;
       &.login__age,
-      &.login__score{ 
+      &.login__score{
         width: 45%;
         @include smx-max {
           width: 100%;

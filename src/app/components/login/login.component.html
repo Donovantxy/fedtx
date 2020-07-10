@@ -1,3 +1,4 @@
+<h2>Fed<span>Tx</span></h2>
 <div class="login">
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <mat-form-field appearance="outline" class="login__firstname">
@@ -25,5 +26,4 @@
       <mat-spinner [diameter]="26" *ngIf="isLogging"></mat-spinner>
     </div>
   </form>
-  <div *ngIf="errorLogin" class="error-login">{{errorLogin}}</div>
 </div>

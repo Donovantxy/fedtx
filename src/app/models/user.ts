@@ -1,9 +1,7 @@
 
 export interface User {
-  username: string;
-  age: string;
-  score: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   password: string;
-  token?: string;
-  salt?: string;
 }

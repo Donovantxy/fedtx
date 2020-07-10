@@ -1,3 +1,4 @@
+import { USER_STATUS } from './../utils/constants';
 import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
@@ -14,7 +15,6 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // return !!this.authService.getToken();
-    return false;
+    return !!localStorage.getItem(USER_STATUS);
   }
 }

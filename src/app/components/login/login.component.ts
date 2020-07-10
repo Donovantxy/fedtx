@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      firstName: ['Fulvio', [Validators.required ]],
-      lastName: ['Cosco', [Validators.required ]],
-      email: ['ciao@ciao.com', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
-      password: ['ciaociA0fulvi', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
+      firstName: ['', [Validators.required ]],
+      lastName: ['', [Validators.required ]],
+      email: ['', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
+      password: ['', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
     });
 
   }
@@ -35,12 +35,15 @@ export class LoginComponent implements OnInit {
   login() {
     this.isLogging = true;
     this.loginForm.disable();
+    /*
+      We don't need to unsubscribe an observable from a http request,
+      because Angular finalizes itself already
+    */
     this.authService.login(this.loginForm.value)
     .subscribe(resp => {
-      console.log(123, resp);
-      // if ( resp.success ) {
-        // this.router.navigate([`app/user`, resp.data.username]);
-      // }
+      // usually from the response we can get if the request is successfull or not,
+      // here we suppose it's always status 200
+      this.router.navigate([`app/user`]);
       this.loginForm.enable();
       this.isLogging = false;
     });

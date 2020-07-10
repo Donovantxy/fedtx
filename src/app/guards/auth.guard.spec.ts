@@ -1,3 +1,5 @@
+import { UserStore } from './../store/state/user.state';
+import { NgxsModule } from '@ngxs/store';
 import { TestBed } from '@angular/core/testing';
 
 import { AuthGuard } from './auth.guard';
@@ -8,7 +10,7 @@ describe('AuthGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, NgxsModule.forRoot([UserStore])],
     });
     guard = TestBed.inject(AuthGuard);
   });
