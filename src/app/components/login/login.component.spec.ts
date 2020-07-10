@@ -9,7 +9,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { HttpClientModule } from '@angular/common/http';
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let el;
@@ -50,6 +50,12 @@ fdescribe('LoginComponent', () => {
 
   it('the password should not be valid', () => {
     form.get('password').setValue('fulcOsco');
+    expect(form.valid).toBeFalse();
+  });
+
+  it('if I change firstName/lastName the password should not be valid', () => {
+    form.get('password').setValue('Fulvcosc');
+    form.get('firstName').setValue('Fulvcosc');
     expect(form.valid).toBeFalse();
   });
 

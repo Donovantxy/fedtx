@@ -1,3 +1,5 @@
+import { isInString } from './functions';
+import { PW_ERR_MSG } from './constants';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 export class AppValidators {
@@ -6,15 +8,15 @@ export class AppValidators {
 
   public static passwordLogin(): ValidatorFn {
     return (ctrl: AbstractControl): object => {
-      const errMsg = `Wrong password format, it has to be min 8 letters long,
-      it has to contain lower and capital letters, and it should not contain user's first or last name`;
+      ctrl.markAsTouched();
       let check = /[A-Z]+/.test(ctrl.value);
       if ( ctrl.parent ) {
         const firstName = ctrl.parent.get('firstName').value;
         const lastName = ctrl.parent.get('lastName').value;
-        check = check ? !(new RegExp(`${firstName}|${lastName}`, 'i')).test(ctrl.value) : check;
+        check = check ? !isInString([firstName, lastName], ctrl.value) : check;
       }
-      return check ? null : { passowrd: errMsg };
+      return check ? null : { passowrd: PW_ERR_MSG };
     };
   }
+
 }

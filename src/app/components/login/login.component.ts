@@ -1,9 +1,13 @@
+import { PW_ERR_MSG } from './../../utils/constants';
+import { isInString } from './../../utils/functions';
 import { AuthService } from './../../services/auth.service';
 import { AppValidators } from './../../utils/validators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
+import { zip, concat, merge } from 'rxjs';
+import { format } from 'path';
 
 @Component({
   selector: 'app-login',
@@ -24,12 +28,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      firstName: ['', [Validators.required ]],
-      lastName: ['', [Validators.required ]],
-      email: ['', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
-      password: ['', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
+      firstName: ['ciao', [Validators.required ]],
+      lastName: ['miao', [Validators.required ]],
+      email: ['ciao@miao.com', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
+      password: ['Asdfghjk', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
     });
-
+    this.checkPwDependingOnNameChanges();
   }
 
   login() {
@@ -46,6 +50,16 @@ export class LoginComponent implements OnInit {
       this.router.navigate([`app/user`]);
       this.loginForm.enable();
       this.isLogging = false;
+    });
+  }
+
+  private checkPwDependingOnNameChanges() {
+    merge(
+      this.loginForm.get('firstName').valueChanges,
+      this.loginForm.get('lastName').valueChanges,
+    ).subscribe(val => {
+      const passwordCtrl = this.loginForm.get('password');
+      passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { passowrd: PW_ERR_MSG } : null);
     });
   }
 
