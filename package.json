@@ -2,7 +2,6 @@
   "name": "fedtx",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve -o --port 3330 --watch",
     "build": "ng build --aot",
     "build:prod": "ng build --prod",
