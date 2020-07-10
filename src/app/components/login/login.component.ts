@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      firstName: ['ciao', [Validators.required ]],
-      lastName: ['miao', [Validators.required ]],
-      email: ['ciao@miao.com', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
-      password: ['Asdfghjk', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
+      firstName: ['', [Validators.required ]],
+      lastName: ['', [Validators.required ]],
+      email: ['', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
+      password: ['', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
     });
     this.checkPwDependingOnNameChanges();
   }
