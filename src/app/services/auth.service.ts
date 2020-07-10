@@ -17,6 +17,7 @@ export class AuthService {
   login(payload: User): Observable<any> {
     return this.http.post(`${environment.apiUrl}/users`, payload)
     .pipe(tap(() => {
+      console.log(payload);
       this.store.dispatch(new Login(payload));
     }));
   }

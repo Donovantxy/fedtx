@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      firstName: ['', [Validators.required ]],
-      lastName: ['', [Validators.required ]],
-      email: ['', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
-      password: ['', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
+      firstName: ['fulvio', [Validators.required ]],
+      lastName: ['cosco', [Validators.required ]],
+      email: ['ciao@cao.com', [Validators.required, Validators.pattern(new RegExp(AppValidators.emailRegEx))]],
+      password: ['ciaociA0', [Validators.required, Validators.minLength(8), AppValidators.passwordLogin()]],
     });
     this.checkPwDependingOnNameChanges();
   }
@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
       We don't need to unsubscribe an observable from a http request,
       because Angular finalizes itself already
     */
+    console.log(this.loginForm, this.loginForm.value);
     this.authService.login(this.loginForm.value)
     .subscribe(resp => {
       // usually from the response we can get if the request is successfull or not,
@@ -56,8 +57,10 @@ export class LoginComponent implements OnInit {
       this.loginForm.get('firstName').valueChanges,
       this.loginForm.get('lastName').valueChanges,
     ).subscribe(val => {
-      const passwordCtrl = this.loginForm.get('password');
-      passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { passowrd: PW_ERR_MSG } : null);
+      const passwordCtrl = this.loginForm.controls?.password;
+      // console.log(passwordCtrl, isInString([val], passwordCtrl.value));
+      // passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { passowrd: PW_ERR_MSG } : null);
+      // passwordCtrl.setErrors(isInString([val], passwordCtrl.value) ? { password: PW_ERR_MSG } : null);
     });
   }
 

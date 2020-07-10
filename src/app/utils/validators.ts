@@ -15,7 +15,7 @@ export class AppValidators {
         const lastName = ctrl.parent.get('lastName').value;
         check = check ? !isInString([firstName, lastName], ctrl.value) : check;
       }
-      return check ? null : { passowrd: PW_ERR_MSG };
+      return check ? null : { password: PW_ERR_MSG };
     };
   }
 
