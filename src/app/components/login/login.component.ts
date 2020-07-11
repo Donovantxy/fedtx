@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   errorLogin = '';
   public loginForm: FormGroup;
   public isLogging = false;
+  public passowrdErrMsg = PW_ERR_MSG;
   private subscribe: Subscription;
 
   constructor(
