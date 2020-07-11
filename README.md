@@ -17,7 +17,7 @@ If you want to run tests type `npm test`
 PS: I also implemented a simply store (redux) where I put user status as
 ```
 UserState: {
-  user: [firstName, lastName, email, password]
+  user: {firstName, lastName, email, password}
   isLoggedIn: boolean
   loginDate: Date
 }
